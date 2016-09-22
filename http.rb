@@ -26,12 +26,19 @@ A VERY BASIC, INSECURE HTTP SERVER
 I can't get the jpeg file to actually display :(
 http://stackoverflow.com/questions/39636545/basic-ruby-http-how-to-send-jpg-to-localhost
 HA - I had a variable mismatch: pictures and picture... (line 51 & 53)
+ALSO: with the mismatched variable fixed, the script runs fine in Ubuntu
+And per Aleksey in Mac, but win7 doesn't load the lolcat. Per Holger:
+   "Your response is not valid HTTP/1.1.
+   Line endings must be \r\n not just \n.
+   Also, you are completely disregarding content encoding.
+   The binary content of a JPG will probably not be valid as part of a UTF-8 string."
+        – Holger Just
 =end
 
 require 'socket'
 
 def send_200(socket, content)
-  socket.puts "HTTP/1.1 200 OK\n\n#{content}"
+  socket.puts "HTTP/1.1 200 OK\r\n\r\n#{content}" # <- per Holger
   socket.close
 end
 
@@ -50,7 +57,7 @@ loop do
         # puts file
         picture = File.read(file)
         # puts picture
-        send_200(client, picture)
+        send_200(client, picture.force_encoding("BINARY")) # <- per Holger
       else
         send_200(client, "hello!")
       end
