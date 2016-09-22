@@ -25,6 +25,7 @@ A VERY BASIC, INSECURE HTTP SERVER
 =begin
 I can't get the jpeg file to actually display :(
 http://stackoverflow.com/questions/39636545/basic-ruby-http-how-to-send-jpg-to-localhost
+HA - I had a variable mismatch: pictures and picture... (line 51 & 53)
 =end
 
 require 'socket'
@@ -47,7 +48,7 @@ loop do
       if url.start_with?("/images/")
         file = url.sub("/images/", "")
         # puts file
-        pictures = File.read(file)
+        picture = File.read(file)
         # puts picture
         send_200(client, picture)
       else
