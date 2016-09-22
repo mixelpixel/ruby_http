@@ -41,7 +41,7 @@ Per Holger:
 require 'socket'
 
 def send_200(socket, content)
-  socket.puts "HTTP/1.1 200 OK\r\n\r\n#{content}" # <- ??? (per Holger - works in ubuntu, not win7)
+  socket.puts "HTTP/1.1 200 OK\r\n\r\n#{content}"  # <- ???per Holger - works in ubuntu, not win7
   socket.close
 end
 
@@ -60,7 +60,7 @@ loop do
         # puts file
         picture = File.read(file)
         # puts picture
-        send_200(client, picture.force_encoding("BINARY")) # <- ??? per Holger (works in Ubuntu, not win7)
+        send_200(client, picture.force_encoding("BINARY")) # <- ???per Holger: works in Ubuntu, not win7
       else
         send_200(client, "hello!")
       end
