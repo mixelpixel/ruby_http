@@ -25,5 +25,17 @@ end
 
 # an alt echo.rb: https://gist.github.com/kyanny/313649
 
-#NOTE: How the heck do I log in/send text to this?
+# NOTE: How the heck do I log in/send text to this?
+# per: http://answers.microsoft.com/en-us/windows/forum/windows_7-windows_programs/telnet-is-missing-in-windows-features-in-windows-7/aba760a4-7957-4705-ac91-b34f1592d51d
+# Windows: StartMenu, Control Panel, Programs and Features, Turn Windows Features on or off:
+# select the Telnet Client check box
+# OKAY: now just enter "telnet localhost 7"
+
+# some neat info: http://www.windowsnetworking.com/articles-tutorials/windows-7/Windows-7-Simple-TCPIP-Services-What-How.html
+
+# how do I terminate telnet?
+# per: http://superuser.com/questions/486496/how-do-i-exit-telnet
+# "ctrl + ]" to get to the telnet coonsole, then type "quit"
+
+# some more neat info: https://technet.microsoft.com/en-us/library/c.aspx
 
