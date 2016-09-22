@@ -1,7 +1,7 @@
 =begin
 https://www.youtube.com/watch?v=uZGPZua6xgA
 Ann Harter - "There is no Magic: Write your own HTTP server, and then stop"
-2) HTTP
+A VERY BASIC, INSECURE HTTP SERVER
 =end 
 
 # The HTTP protocol: https://www.ietf.org/rfc/rfc2616.txt
@@ -22,6 +22,10 @@ Ann Harter - "There is no Magic: Write your own HTTP server, and then stop"
 
 # A very basic HTTP server:
 
+=begin
+I can't get the jpeg file to actually display :(
+http://stackoverflow.com/questions/39636545/basic-ruby-http-how-to-send-jpg-to-localhost
+=end
 
 require 'socket'
 
