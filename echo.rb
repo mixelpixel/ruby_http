@@ -11,7 +11,8 @@ A BASIC ECHO SERVER
 
 require 'socket'
 
-server = TCPServer.new 7
+# server = TCPServer.new 7    # <-- This works fine on win7
+server = TCPServer.new 1024   # <-- I guess on Ubuntu I don't have root permission?
 
 loop do
   Thread.start(server.accept) do |client|
@@ -30,12 +31,19 @@ end
 # Windows: StartMenu, Control Panel, Programs and Features, Turn Windows Features on or off:
 # select the Telnet Client check box
 # OKAY: now just enter "telnet localhost 7"
+# or whatever host number you're using, i.e. "telnet localhost #"
 
 # some neat info: http://www.windowsnetworking.com/articles-tutorials/windows-7/Windows-7-Simple-TCPIP-Services-What-How.html
 
 # how do I terminate telnet?
 # per: http://superuser.com/questions/486496/how-do-i-exit-telnet
-# "ctrl + ]" to get to the telnet coonsole, then type "quit"
+# "ctrl + ]" to get to the telnet console, then type "quit"
 
 # some more neat info: https://technet.microsoft.com/en-us/library/c.aspx
 
+# "If you are running Linux Kernel 2.6.24 or above and have libcap installed,
+# you can allow program to bind to ports under 1014 as non-root user. See more at:
+# http://stackoverflow.com/questions/413807/is-there-a-way-for-non-root-processes-to-bind-to-privileged-ports-1024-on-l/414258#414258
+# uname -a or uname -r to find out the linux kernel
+
+ 
