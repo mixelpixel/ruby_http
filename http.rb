@@ -59,8 +59,8 @@ loop do
       if url.start_with?("/images/")
         file = url.sub("/images/", "")
         puts 'file: ' + file.to_s
-        picture = File.read(file)
-        puts 'picture: '+ picture.to_s
+        picture = File.binread(file)
+        # puts 'picture: '+ picture.to_s
         send_200(client, picture)#, picture.force_encoding("BINARY")) # <- ???per Holger: works in Ubuntu, not win7
 
       else
