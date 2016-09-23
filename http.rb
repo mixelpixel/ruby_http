@@ -41,7 +41,7 @@ Per Holger:
 require 'socket'
 
 def send_200(socket, content)
-  socket.puts "HTTP/1.1 200 OK\r\n\r\n#{content}"  # <- ???per Holger - works in ubuntu, not win7
+  socket.puts "HTTP/1.1 200 OK\r\n\r\n#{content}"  # <- per Holger
   socket.close
 end
 
@@ -49,20 +49,15 @@ server = TCPServer.new 2016
 
 loop do
   Thread.start(server.accept) do |client|
-
   request = client.gets
-  # puts request
+
   if request.start_with?("GET")
       url = request.split(" ")[1]
-      puts "url: " + url.to_s
 
       if url.start_with?("/images/")
         file = url.sub("/images/", "")
-        puts 'file: ' + file.to_s
-        picture = File.read(file)
-        puts 'picture: '+ picture.to_s
-        send_200(client, picture)#, picture.force_encoding("BINARY")) # <- ???per Holger: works in Ubuntu, not win7
-
+        picture = File.binread(file)               # <-- per Holger
+        send_200(client, picture)
       else
         send_200(client, "hello!")
       end
