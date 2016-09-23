@@ -54,13 +54,15 @@ loop do
   # puts request
   if request.start_with?("GET")
       url = request.split(" ")[1]
-      # puts "url: "+ url.to_s
+      puts "url: " + url.to_s
+
       if url.start_with?("/images/")
         file = url.sub("/images/", "")
-        # puts file
+        puts 'file: ' + file.to_s
         picture = File.read(file)
-        # puts picture
-        send_200(client, picture.force_encoding("BINARY")) # <- ???per Holger: works in Ubuntu, not win7
+        puts 'picture: '+ picture.to_s
+        send_200(client, picture)#, picture.force_encoding("BINARY")) # <- ???per Holger: works in Ubuntu, not win7
+
       else
         send_200(client, "hello!")
       end
@@ -75,3 +77,9 @@ end
 # http://nginx.org/en/docs/beginners_guide.html
 # OT: http://stackoverflow.com/questions/10182798/why-are-ports-below-1024-privileged
 
+# interesting:
+# https://www.practicingruby.com/articles/implementing-an-http-file-server
+# http://codereview.stackexchange.com/questions/83522/ruby-webserver-app
+# https://ruby-doc.org/core-2.1.1/Encoding.html
+# http://ruby-doc.org/stdlib-2.0.0/libdoc/socket/rdoc/Socket.html
+# https://matteomelani.wordpress.com/2011/11/11/a-simple-web-server-is-ruby/
