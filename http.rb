@@ -25,7 +25,7 @@ A VERY BASIC, INSECURE HTTP SERVER
 =begin
 I can't get the jpeg file to actually display :(
 http://stackoverflow.com/questions/39636545/basic-ruby-http-how-to-send-jpg-to-localhost
-HA - I had a variable mismatch: pictures and picture... (line 51 & 53)
+HA - I had a variable mismatch: pictures and picture... (line 62 & 64)
 ALSO: NOW with the mismatched variable fixed,
 the script runs fine in Ubuntu
 (& per Aleksey, works in Mac)
