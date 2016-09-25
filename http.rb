@@ -1,3 +1,5 @@
+
+
 =begin
 https://www.youtube.com/watch?v=uZGPZua6xgA
 Ann Harter - "There is no Magic: Write your own HTTP server, and then stop"
@@ -25,7 +27,7 @@ A VERY BASIC, INSECURE HTTP SERVER
 =begin
 I can't get the jpeg file to actually display :(
 http://stackoverflow.com/questions/39636545/basic-ruby-http-how-to-send-jpg-to-localhost
-HA - I had a variable mismatch: pictures and picture... (line 51 & 53)
+HA - I had a variable mismatch: pictures and picture... (line 62 & 64)
 ALSO: NOW with the mismatched variable fixed,
 the script runs fine in Ubuntu
 (& per Aleksey, works in Mac)
@@ -41,28 +43,23 @@ Per Holger:
 require 'socket'
 
 def send_200(socket, content)
-  socket.puts "HTTP/1.1 200 OK\r\n\r\n#{content}"  # <- ???per Holger - works in ubuntu, not win7
+  socket.puts "HTTP/1.1 200 OK\r\n\r\n#{content}"  # <- per Holger
   socket.close
 end
 
-server = TCPServer.new 2016
+server = TCPServer.new 2016  # <-- something above 1024
 
 loop do
   Thread.start(server.accept) do |client|
-
   request = client.gets
-  # puts request
+
   if request.start_with?("GET")
       url = request.split(" ")[1]
-      puts "url: " + url.to_s
 
       if url.start_with?("/images/")
         file = url.sub("/images/", "")
-        puts 'file: ' + file.to_s
-        picture = File.binread(file)
-        # puts 'picture: '+ picture.to_s
-        send_200(client, picture)#, picture.force_encoding("BINARY")) # <- ???per Holger: works in Ubuntu, not win7
-
+        picture = File.binread(file)               # <-- per Holger
+        send_200(client, picture)
       else
         send_200(client, "hello!")
       end
